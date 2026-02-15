@@ -912,7 +912,7 @@ function App() {
             <div className="flex items-center gap-8 text-sm text-slate-400">
               <a href="#" className="hover:text-violet-400 transition-colors">Privasi</a>
               <a href="#" className="hover:text-violet-400 transition-colors">Syarat</a>
-              <a href="#" className="hover:text-violet-400 transition-colors">Kontak</a>
+              <a href="https://wa.me/6288802747938?text=Hallo" className="hover:text-violet-400 transition-colors">Kontak</a>
             </div>
             
             <p className="text-sm text-slate-600">

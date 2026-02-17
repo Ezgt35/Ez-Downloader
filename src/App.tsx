@@ -538,7 +538,7 @@ function App() {
                         <TabsTrigger value="video" className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-fuchsia-600 data-[state=active]:text-white transition-all">
                           <FileVideo className="w-4 h-4 mr-2" /> Video
                         </TabsTrigger>
-                        <TabsTrigger value="audio" className="">
+                        <TabsTrigger >
                           <FileAudio className="w-4 h-4 mr-2" /> Audio
                         </TabsTrigger>
                         <TabsTrigger value="images" className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-fuchsia-600 data-[state=active]:text-white transition-all">

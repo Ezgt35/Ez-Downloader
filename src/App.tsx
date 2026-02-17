@@ -118,7 +118,7 @@ function App() {
     }
 
     if (!validateUrl(url)) {
-      toast.error('URL TikTok tidak valid');
+      toast.error('URL TikTok tidak valid/salah pastikan link benar');
       return;
     }
 

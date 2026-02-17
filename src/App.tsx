@@ -474,7 +474,62 @@ function App() {
                 </div>
 
                 <div className="grid lg:grid-cols-2 gap-8">
-                  {/* Preview */}
+                   {/* Preview */}
+                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-slate-900/50 border border-white/10 group">
+                    {data.isSlideshow ? (
+                      <div className="w-full h-full relative">
+                        <img
+                          src={data.images?.[0] || data.cover}
+                          alt={data.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        {data.images && data.images.length > 1 && (
+                          <div className="absolute top-4 right-4 px-4 py-2 rounded-full bg-black/60 backdrop-blur-md text-white text-sm font-medium border border-white/10">
+                            {data.images.length} Foto
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <>
+                        <img
+                          src={data.cover}
+                          alt={data.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-20 h-20 rounded-full bg-black/50 flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform cursor-pointer">
+                            <Play className="w-10 h-10 text-white ml-1" />
+                          </div>
+                        </div>
+                      </>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <div className="flex items-center gap-4 mb-4">
+                        <img
+                          src={data.authorAvatar}
+                          alt={data.author}
+                          className="w-14 h-14 rounded-full border-2 border-violet-500/50"
+                        />
+                        <div>
+                          <p className="font-semibold text-lg">{data.author}</p>
+                          <p className="text-sm text-slate-400">{data.duration}</p>
+                        </div>
+                      </div>
+                      <p className="text-sm line-clamp-2 text-slate-300">{data.description}</p>
+                      <div className="flex items-center gap-6 mt-4 text-sm text-slate-400">
+                        <span className="flex items-center gap-2">
+                          <Play className="w-4 h-4 text-violet-400" /> {data.plays}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <Heart className="w-4 h-4 text-pink-400" /> {data.likes}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <Share2 className="w-4 h-4 text-fuchsia-400" /> {data.shares}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                  
                   {/* Download Options */}
                   <div>

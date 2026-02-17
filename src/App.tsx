@@ -531,21 +531,27 @@ function App() {
                     </div>
                   </div>
                  
-                  {/* Download Options */}
+            {/* Download Options */}
                   <div>
                     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                       <TabsList className="w-full grid grid-cols-3 bg-white/5 p-1 rounded-xl">
-                        <TabsTrigger value="video" className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-fuchsia-600 data-[state=active]:text-white transition-all">
-                          <FileVideo className="w-4 h-4 mr-2" /> Video
+                        
+                        <TabsTrigger
+                          value="video" className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-fuchsia-600 data-[state=active]:text-white transition-all"
+                          > Video
                         </TabsTrigger>
-                        <TabsTrigger value="audio" className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-fuchsia-600 data-[state=active]:text-white transition-all">
-                          <FileAudio className="w-4 h-4 mr-2" /> Audio
+                        
+                        <TabsTrigger
+                          value="audio" className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-fuchsia-600 data-[state=active]:text-white transition-all"
+                          >Audio
                         </TabsTrigger>
-                        <TabsTrigger value="images" className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-fuchsia-600 data-[state=active]:text-white transition-all">
-                          <FileImage className="w-4 h-4 mr-2" /> Foto
+                        <TabsTrigger
+                          value="images" className="rounded-lg data-[state=active]:bg-gradient-to-r data-[state=active]:from-violet-600 data-[state=active]:to-fuchsia-600 data-[state=active]:text-white transition-all"
+                          > Foto
                         </TabsTrigger>
                       </TabsList>
 
+                      
                       <TabsContent value="video" className="mt-6">
                         <div className="space-y-4">
                           {data.videoUrl ? (

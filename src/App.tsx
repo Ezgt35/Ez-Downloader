@@ -236,49 +236,58 @@ function App() {
   };
 
   const handleDownload = async (type: 'video' | 'audio' | 'image', index?: number) => {
-    const downloadId = type === 'image' ? `image-${index}` : type;
-    setDownloading(downloadId);
+  const downloadId = type === 'image' ? `image-${index}` : type;
+  setDownloading(downloadId);
 
-    try {
-      let downloadUrl = '';
-      let fileName = '';
+  try {
+    let downloadUrl = '';
+    let fileName = '';
 
-      if (type === 'video') {
-        downloadUrl = data?.videoUrlNoWatermark || data?.videoUrl || '';
-        fileName = `tiktok_video_${data?.id}.mp4`;
-      } else if (type === 'audio') {
-        downloadUrl = data?.audioUrl || '';
-        fileName = `tiktok_audio_${data?.id}.mp3`;
-      } else if (type === 'image' && index !== undefined) {
-        downloadUrl = data?.images?.[index] || '';
-        fileName = `tiktok_image_${data?.id}_${index + 1}.jpg`;
-      }
-
-      if (!downloadUrl) {
-        toast.error('URL download tidak tersedia');
-        return;
-      }
-
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.download = fileName;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      toast.success(`Memulai download ${type === 'video' ? 'video' : type === 'audio' ? 'audio' : 'foto'}!`);
-    } catch (error) {
-      toast.error('Gagal mengunduh. Coba buka link secara manual.');
-    } finally {
-      setDownloading(null);
+    if (type === 'video') {
+      downloadUrl = data?.videoUrlNoWatermark || data?.videoUrl || '';
+      fileName = `tiktok_video_${data?.id}.mp4`;
+    } else if (type === 'audio') {
+      downloadUrl = data?.audioUrl || '';
+      fileName = `tiktok_audio_${data?.id}.mp3`;
+    } else if (type === 'image' && index !== undefined) {
+      downloadUrl = data?.images?.[index] || '';
+      fileName = `tiktok_image_${data?.id}_${index + 1}.jpg`;
     }
-  };
 
-  const openInNewTab = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
+    if (!downloadUrl) {
+      toast.error('URL download tidak tersedia');
+      return;
+    }
+
+    const response = await fetch(downloadUrl);
+
+    if (!response.ok) {
+      throw new Error('Gagal mengambil file');
+    }
+
+    const blob = await response.blob();
+    const blobUrl = window.URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = blobUrl;
+    link.setAttribute('download', fileName);
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    window.URL.revokeObjectURL(blobUrl);
+
+    toast.success('Download dimulai!');
+  } catch (error) {
+    console.error(error);
+    toast.error('Gagal mengunduh file.');
+  } finally {
+    setDownloading(null);
+  }
+};
+  
+
 
   const clearData = () => {
     setData(null);
@@ -552,14 +561,7 @@ function App() {
                                   </div>
                                 </div>
                                 <div className="flex gap-3">
-                                  <Button
-                                    onClick={() => openInNewTab(data.videoUrlNoWatermark || data.videoUrl)}
-                                    variant="outline"
-                                    size="icon"
-                                    className="border-white/20 hover:bg-white/10 hover:border-violet-500/50 rounded-xl h-12 w-12"
-                                  >
-                                    <ExternalLink className="w-5 h-5" />
-                                  </Button>
+                                  
                                   <Button
                                     onClick={() => handleDownload('video')}
                                     disabled={downloading === 'video'}

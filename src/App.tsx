@@ -288,7 +288,10 @@ function App() {
 };
   
 
-
+const openInNewTab = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+  
   const clearData = () => {
     setData(null);
     setUrl('');
@@ -561,6 +564,15 @@ function App() {
                                   </div>
                                 </div>
                                 <div className="flex gap-3">
+
+                                  <Button
+                                    onClick={() => openInNewTab(data.videoUrlNoWatermark || data.videoUrl)}
+                                    variant="outline"
+                                    size="icon"
+                                    className="border-white/20 hover:bg-white/10 hover:border-violet-500/50 rounded-xl h-12 w-12"
+                                  >
+                                    <ExternalLink className="w-5 h-5" />
+                                  </Button>
                                   
                                   <Button
                                     onClick={() => handleDownload('video')}

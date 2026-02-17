@@ -307,7 +307,7 @@ function App() {
               </div>
               <div>
                 <span className="text-2xl font-bold bg-gradient-to-r from-white via-violet-200 to-fuchsia-200 bg-clip-text text-transparent">
-                  MIWA DONGO
+                  EZ-DOWNLOADER
                 </span>
                 <p className="text-xs text-slate-500 -mt-1">TikTok Media Downloader</p>
               </div>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Syarat & Ketentuan - ez-downloader</title>
+  <meta name="description" content="Syarat dan ketentuan penggunaan ez-downloader" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #13131a;
+      --bg-card: rgba(30, 30, 46, 0.8);
+      --bg-glass: rgba(25, 25, 40, 0.6);
+      --text-primary: #ffffff;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.4);
+      --accent-hover: #7c3aed;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(139, 92, 246, 0.4);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.15);
+      --radius: 24px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: 
+        radial-gradient(ellipse at top, rgba(139, 92, 246, 0.15), transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(59, 130, 246, 0.1), transparent 50%),
+        var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated background particles */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        radial-gradient(1px 1px at 20px 30px, rgba(139, 92, 246, 0.3), transparent),
+        radial-gradient(1px 1px at 40px 70px, rgba(59, 130, 246, 0.2), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(139, 92, 246, 0.25), transparent);
+      background-size: 100px 100px;
+      animation: float 20s linear infinite;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-100px); }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 40px 20px 30px;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 2.25rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), #3b82f6, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      border-radius: 2px;
+    }
+
+    .page-title {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-top: 20px;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: linear-gradient(to bottom, var(--bg-primary), transparent);
+      padding: 12px 0;
+      backdrop-filter: blur(10px);
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), #3b82f6);
+      border-radius: 2px;
+      transition: width 0.15s ease-out;
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .progress-text {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    /* Card */
+    .card {
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow), var(--shadow-glow);
+      backdrop-filter: blur(20px);
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px dashed var(--border);
+      scroll-margin-top: 100px;
+    }
+
+    .section:last-child {
+      margin-bottom: 8px;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title .icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      border-radius: 8px;
+      color: white;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .section-content {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      padding-left: 38px;
+    }
+
+    .section-content p { margin-bottom: 12px; }
+
+    .section-content ul {
+      padding-left: 20px;
+      margin: 12px 0;
+    }
+
+    .section-content li {
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .section-content li::marker {
+      color: var(--accent);
+    }
+
+    .highlight {
+      color: var(--warning);
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin: 8px 0;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    /* Agreement Section */
+    .agreement-section {
+      background: linear-gradient(135deg, rgba(30, 30, 46, 0.9), rgba(25, 25, 40, 0.95));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-top: 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .agreement-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    .agreement-text {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .agree-btn {
+      width: 100%;
+      max-width: 320px;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: translateY(0);
+    }
+
+    .agree-btn.enabled {
+      opacity: 1;
+      cursor: pointer;
+      animation: none;
+    }
+
+    .agree-btn.enabled:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(139, 92, 246, 0.5);
+    }
+
+    .agree-btn.enabled:active {
+      transform: translateY(0);
+    }
+
+    .agree-btn svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .agree-btn.enabled:hover svg {
+      transform: scale(1.1);
+    }
+
+    .agree-btn:disabled {
+      animation: pulse-disabled 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-disabled {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.7; }
+    }
+
+    /* Success State */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    .success-state.show {
+      display: block;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--success);
+      animation: scaleIn 0.4s ease;
+    }
+
+    @keyframes scaleIn {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+
+    .success-icon svg {
+      width: 40px;
+      height: 40px;
+      color: var(--success);
+    }
+
+    .success-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--success), #34d399);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .success-message {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      font-size: 1.05rem;
+    }
+
+    /* Back Button */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      padding: 16px 32px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: var(--transition);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .back-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .back-btn:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-btn:hover::before {
+      left: 100%;
+    }
+
+    .back-btn svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .back-btn:hover svg {
+      transform: translateX(-3px);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding: 20px;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin: 20px 0;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    .scroll-hint svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
+    }
+
+    /* Hide content initially for JS enhancement */
+    .content-wrapper {
+      transition: opacity 0.3s ease;
+    }
+
+    .content-wrapper.hidden {
+      opacity: 0.3;
+      pointer-events: none;
+      filter: blur(2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      body { padding: 16px 12px; }
+      .card { padding: 24px 20px; }
+      .logo { font-size: 1.9rem; }
+      .section-content { padding-left: 34px; font-size: 0.92rem; }
+      .agree-btn { padding: 14px 20px; font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Header -->
+    <header>
+      <h1 class="logo">✨ ez-downloader</h1>
+      <p class="page-title">Syarat & Ketentuan Penggunaan</p>
+    </header>
+
+    <!-- Progress Bar (Sticky) -->
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">Scroll untuk membaca • 0%</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper" id="contentWrapper">
+      <div class="card">
+        
+        <!-- Section 1 -->
+        <div class="section" id="section1">
+          <h2 class="section-title">
+            <span class="icon">1</span>
+            Penerimaan Syarat
+          </h2>
+          <div class="section-content">
+            <p>Dengan mengakses dan menggunakan <strong>ez-downloader</strong>, Anda secara otomatis menyetujui untuk terikat oleh seluruh syarat dan ketentuan yang tertera di halaman ini.</p>
+            <p>Jika Anda tidak menyetujui salah satu poin, harap segera hentikan penggunaan layanan ini.</p>
+          </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section" id="section2">
+          <h2 class="section-title">
+            <span class="icon">2</span>
+            Penggunaan Layanan
+          </h2>
+          <div class="section-content">
+            <p>ez-downloader disediakan <strong>gratis</strong> untuk penggunaan pribadi dan non-komersial. Anda setuju untuk:</p>
+            <ul>
+              <li>Menggunakan layanan sesuai hukum yang berlaku di wilayah Anda</li>
+              <li>Tidak menyalahgunakan layanan untuk aktivitas ilegal atau berbahaya</li>
+              <li>Menghormati hak cipta dan kekayaan intelektual pemilik konten</li>
+              <li>Tidak mencoba membobol, memindai, atau mengganggu sistem layanan</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section" id="section3">
+          <h2 class="section-title">
+            <span class="icon">3</span>
+            Hak Cipta & Konten
+          </h2>
+          <div class="section-content">
+            <p><span class="highlight">⚠️ Penting:</span> ez-downloader tidak memiliki, menghosting, atau menyimpan konten video TikTok. Semua hak cipta, merek dagang, dan hak kekayaan intelektual lainnya tetap menjadi milik pembuat konten asli dan TikTok.</p>
+            <p>Anda bertanggung jawab penuh atas:</p>
+            <ul>
+              <li>Memastikan Anda memiliki izin eksplisit untuk mendownload dan menggunakan konten</li>
+              <li>Penggunaan konten yang didownload hanya untuk keperluan pribadi/fair use</li>
+              <li>Tidak mendistribusikan, menjual, atau memonetisasi konten tanpa izin tertulis</li>
+            </ul>
+            <div class="badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              Gunakan dengan bijak & hormati kreator
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="section" id="section4">
+          <h2 class="section-title">
+            <span class="icon">4</span>
+            Komitmen Privasi
+          </h2>
+          <div class="section-content">
+            <p>Kami sangat menghargai privasi Anda. Berikut komitmen kami:</p>
+            <ul>
+              <li>✅ <strong>Tanpa log:</strong> Tidak menyimpan riwayat download, IP, atau aktivitas Anda</li>
+              <li>✅ <strong>Tanpa data pribadi:</strong> Tidak meminta email, nama, atau informasi akun</li>
+              <li>✅ <strong>Tanpa pelacakan:</strong> Tidak menggunakan cookie analytics atau tracker pihak ketiga</li>
+              <li>✅ <strong>Proses anonim:</strong> Link TikTok diproses secara temporer dan dihapus otomatis setelah selesai</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="section" id="section5">
+          <h2 class="section-title">
+            <span class="icon">5</span>
+            Batasan Tanggung Jawab
+          </h2>
+          <div class="section-content">
+            <p>Layanan ini disediakan "<strong>sebagaimana adanya</strong>" (as-is) tanpa jaminan eksplisit maupun implisit. ez-downloader tidak bertanggung jawab atas:</p>
+            <ul>
+              <li>Kerusakan, kehilangan data, atau masalah teknis akibat penggunaan layanan</li>
+              <li>Konten yang tidak tersedia, gagal diproses, atau berubah format</li>
+              <li>Klaim hukum, hak cipta, atau sengketa terkait konten yang didownload</li>
+              <li>Perubahan fitur, penghentian sementara, atau discontinu layanan</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="section" id="section6">
+          <h2 class="section-title">
+            <span class="icon">6</span>
+            Perubahan & Pembaruan
+          </h2>
+          <div class="section-content">
+            <p>Kami berhak memperbarui syarat ini kapan saja tanpa pemberitahuan sebelumnya. Perubahan akan efektif segera setelah dipublikasikan di halaman ini.</p>
+            <p>Penggunaan berkelanjutan setelah pembaruan berarti Anda menerima dan menyetujui syarat versi terbaru.</p>
+          </div>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="section" id="section7">
+          <h2 class="section-title">
+            <span class="icon">7</span>
+            Kontak & Dukungan
+          </h2>
+          <div class="section-content">
+            <p>Untuk pertanyaan, masukan, atau laporan terkait syarat ini:</p>
+            <p style="margin-top: 12px;">
+              🔗 <a href="https://ez-downloader.vercel.app" style="color: var(--accent); font-weight: 500;">ez-downloader.vercel.app</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Scroll Hint -->
+        <div class="scroll-hint" id="scrollHint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+          Scroll ke bawah untuk melanjutkan
+        </div>
+
+        <!-- Agreement Box -->
+        <div class="agreement-section">
+          <p class="agreement-text">
+            Dengan mengklik tombol di bawah, Anda menyatakan telah <strong>membaca, memahami, dan menyetujui</strong> seluruh Syarat & Ketentuan ez-downloader.
+          </p>
+          <button class="agree-btn" id="agreeBtn" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 13l4 4L19 7"/>
+            </svg>
+            <span id="btnText">Saya Setuju</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Success State (Hidden Initially) -->
+    <div class="success-state" id="successState">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 6L9 17l-5-5"/>
+        </svg>
+      </div>
+      <h2 class="success-title">Terima Kasih! 🎉</h2>
+      <p class="success-message">Anda telah menyetujui Syarat & Ketentuan.<br>Silakan kembali ke halaman utama untuk mulai menggunakan ez-downloader.</p>
+      
+      <!-- Back Button (Appears After Agreement) -->
+      <a href="https://ez-downloader.vercel.app" class="back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Kembali ke ez-downloader
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 <strong>ez-downloader</strong>. Dibuat dengan ❤️ untuk komunitas.<br>
+    <a href="https://ez-downloader.vercel.app">Kunjungi situs utama</a></p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const contentWrapper = document.getElementById('contentWrapper');
+      const progressFill = document.getElementById('progressFill');
+      const progressText = document.getElementById('progressText');
+      const agreeBtn = document.getElementById('agreeBtn');
+      const btnText = document.getElementById('btnText');
+      const scrollHint = document.getElementById('scrollHint');
+      const successState = document.getElementById('successState');
+      const card = document.querySelector('.card');
+
+      let hasAgreed = false;
+
+      // Calculate scroll progress
+      function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (scrollTop / docHeight) * 100;
+        
+        // Update progress bar
+        progressFill.style.width = `${Math.min(scrolled, 100)}%`;
+        progressText.textContent = `Scroll untuk membaca • ${Math.round(Math.min(scrolled, 100))}%`;
+
+        // Enable agree button when scrolled to bottom (95%+)
+        if (scrolled >= 95 && !hasAgreed) {
+          agreeBtn.classList.add('enabled');
+          agreeBtn.disabled = false;
+          scrollHint.style.display = 'none';
+        }
+      }
+
+      // Handle agreement
+      agreeBtn.addEventListener('click', () => {
+        if (agreeBtn.disabled) return;
+        
+        hasAgreed = true;
+        
+        // Hide content with animation
+        contentWrapper.classList.add('hidden');
+        card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        card.style.opacity = '0';
+        card.style.transform = 'scale(0.98)';
+        
+        // Show success state after delay
+        setTimeout(() => {
+          card.style.display = 'none';
+          successState.classList.add('show');
+          
+          // Smooth scroll to success state
+          successState.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      });
+
+      // Event listeners
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+      
+      // Initial check
+      updateProgress();
+
+      // Keyboard support for accessibility
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && agreeBtn.classList.contains('enabled') && !hasAgreed) {
+          agreeBtn.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

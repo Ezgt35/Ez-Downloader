@@ -28,11 +28,11 @@ import {
   Layers,
   Cpu
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
+import { Button } from './components/ui/button';
+import { Input } from './components/ui/input';
+import { Card, CardContent } from './components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
+import { Badge } from './components/ui/badge';
 import { toast } from 'sonner';
 import './App.css';
 
@@ -925,11 +925,9 @@ const openInNewTab = (url: string) => {
             
             <div className="flex items-center gap-8 text-sm text-slate-400">
               <a href="#" className="hover:text-violet-400 transition-colors">Privasi</a>
-<<<<<<< HEAD
-              <a href="http://localhost:5173/src/syarat" className="hover:text-violet-400 transition-colors">Syarat</a>
-=======
-              <a href="#" className="hover:text-violet-400 transition-colors">Syarat</a>
->>>>>>> f272d284187a2a0cab729df8edb7cbfd4ce6b39d
+
+              <a href="/syarat" className="hover:text-violet-400 transition-colors">Syarat</a>
+
               <a href="https://wa.me/6288802747938?text=Hallo" className="hover:text-violet-400 transition-colors">Kontak</a>
             </div>
             

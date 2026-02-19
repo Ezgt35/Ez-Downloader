@@ -925,7 +925,11 @@ const openInNewTab = (url: string) => {
             
             <div className="flex items-center gap-8 text-sm text-slate-400">
               <a href="#" className="hover:text-violet-400 transition-colors">Privasi</a>
+<<<<<<< HEAD
               <a href="http://localhost:5173/src/syarat" className="hover:text-violet-400 transition-colors">Syarat</a>
+=======
+              <a href="#" className="hover:text-violet-400 transition-colors">Syarat</a>
+>>>>>>> f272d284187a2a0cab729df8edb7cbfd4ce6b39d
               <a href="https://wa.me/6288802747938?text=Hallo" className="hover:text-violet-400 transition-colors">Kontak</a>
             </div>
             
